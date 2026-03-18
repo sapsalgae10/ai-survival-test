@@ -1,3 +1,4 @@
+
 "use client";
 import React, { useState } from 'react';
 
@@ -6,9 +7,7 @@ export default function Home() {
 
   return (
     <main className="min-h-screen bg-white text-[#000000] font-sans tracking-tight">
-      
-      {/* 현대 스타일 GNB */}
-      <nav className="sticky top-0 z-50 bg-white/95 border-b border-gray-100 backdrop-blur-sm">
+     <nav className="sticky top-0 z-50 bg-white/95 border-b border-gray-100 backdrop-blur-sm">
         <div className="max-w-7xl mx-auto px-8 h-20 flex items-center justify-between">
           <div className="flex items-center gap-10">
             <h1 className="text-2xl font-black tracking-tighter cursor-pointer" onClick={() => setMode('home')}>
@@ -28,10 +27,10 @@ export default function Home() {
         </div>
       </nav>
 
+      {/* 홈 모드 리더링 */}
       {mode === 'home' && (
         <div className="animate-in fade-in duration-1000">
-          {/* Hero Section */}
-          <section className="relative h-[85vh] flex items-center overflow-hidden bg-slate-900">
+         <section className="relative h-[85vh] flex items-center overflow-hidden bg-slate-900">
             <div className="absolute inset-0 opacity-60">
                 <div className="w-full h-full bg-gradient-to-r from-black to-transparent"></div>
             </div>
@@ -41,8 +40,7 @@ export default function Home() {
                 <h2 className="text-5xl md:text-7xl font-bold text-white mb-8 leading-[1.1] tracking-tighter">
                   인공지능 시대를<br/>주도하는 아키텍트
                 </h2>
-                {/* 👇 여기서 문제가 되었던 태그를 <p>와 </p>로 정상적으로 맞췄습니다. 👇 */}
-                <p className="text-xl text-gray-300 mb-12 leading-relaxed">
+               <p className="text-xl text-gray-300 mb-12 leading-relaxed">
                   단순한 코딩을 넘어 시스템을 설계하고 가치를 창출합니다.<br/>
                   당신의 개발자로서의 현재와 미래를 진단해 보세요.
                 </p>
@@ -58,10 +56,30 @@ export default function Home() {
             </div>
           </section>
 
-          {/* Grid Content: 정보 카드 섹션 */}
           <section className="max-w-7xl mx-auto px-8 py-24">
             <div className="flex justify-between items-end mb-16">
               <h3 className="text-4xl font-bold tracking-tighter">Essential Insight</h3>
               <p className="text-gray-500 font-medium">AI가 바꾸는 개발 생태계의 모든 것</p>
             </div>
-            <div className="grid md:grid-cols-2 lg:grid-
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {/* 그리드 아이템 예시 */}
+              <div className="p-10 border border-gray-100 rounded-2xl hover:shadow-xl transition-all">
+                <div className="text-blue-600 font-bold mb-4">01</div>
+                <h4 className="text-xl font-bold mb-2">AI 아키텍처</h4>
+                <p className="text-gray-500">대규모 언어 모델을 서비스에 통합하는 최적의 설계를 배웁니다.</p>
+              </div>
+            </div>
+          </section>
+        </div>
+      )}
+
+      {/* 테스트 모드 렌더링 추가 */}
+      {mode === 'test' && (
+        <div className="max-w-4xl mx-auto px-8 py-24 text-center">
+          <h2 className="text-3xl font-bold mb-4">진단 테스트가 준비 중입니다.</h2>
+          <button onClick={() => setMode('home')} className="text-blue-600 underline">홈으로 돌아가기</button>
+        </div>
+      )}
+    </main>
+  );
+}
