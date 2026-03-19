@@ -2,83 +2,104 @@
 import React, { useState } from 'react';
 
 export default function Home() {
-  const [mode, setMode] = useState('home');
+  const [mode, setMode] = useState('home'); // home, test, result
+  const [currentIdx, setCurrentIdx] = useState(0);
+  const [scores, setScores] = useState({ coder: 0, arch: 0, ai: 0, future: 0 });
+
+  // --- [진단 문항 데이터 30개] ---
+  const questions = [
+    { q: "나는 코드의 한 줄보다 전체 시스템의 구조(Architecture)를 먼저 생각한다.", type: "arch" },
+    { q: "GitHub Copilot이나 ChatGPT 없이 코딩하는 것이 이제는 매우 불편하다.", type: "ai" },
+    { q: "새로운 기술이 나오면 기술적 호기심보다 '어디에 써먹을지' 비즈니스 가치를 먼저 따진다.", type: "future" },
+    { q: "나는 주어진 요구사항대로 '구현'만 할 때 가장 마음이 편하다.", type: "coder" },
+    { q: "복잡한 에러가 발생했을 때 AI에게 질문하는 요령(Prompt)을 스스로 터득하고 있다.", type: "ai" },
+    { q: "나는 특정 언어나 프레임워크에 종속되지 않고 문제 해결 자체에 집중한다.", type: "arch" },
+    { q: "AI가 내 일자리를 뺏을까 봐 걱정하기보다, AI를 어떻게 부릴지 고민한다.", type: "future" },
+    { q: "코드 리뷰를 할 때 가독성이나 성능보다 '돌아가느냐'가 가장 중요하다.", type: "coder" },
+    { q: "클라우드 서비스(AWS, Vercel 등)를 활용해 서비스를 직접 배포해본 경험이 즐겁다.", type: "arch" },
+    { q: "AI가 생성한 코드의 오류를 잡아내는 것이 직접 처음부터 짜는 것보다 빠르다.", type: "ai" },
+    // ... (지면상 10개를 예시로 넣었습니다. 나머지 20개도 이 패턴으로 확장 가능합니다)
+    { q: "나는 반복적인 코딩 작업에서 지루함을 크게 느낀다.", type: "future" },
+    { q: "문서화보다는 일단 코드를 치기 시작하는 편이다.", type: "coder" },
+    { q: "API 설계 시 확장성과 재사용성을 최우선으로 고려한다.", type: "arch" },
+    { q: "AI 도구 유료 결제 비용을 아깝다고 생각하지 않는다.", type: "ai" },
+    { q: "나는 개발자이자 기획자의 마인드를 동시에 갖고 있다.", type: "future" },
+    // (남은 문항들은 실제 서비스 시 주제에 맞춰 자유롭게 변형 가능합니다)
+  ];
+
+  const handleNext = (point: number) => {
+    const type = questions[currentIdx].type as keyof typeof scores;
+    setScores({ ...scores, [type]: scores[type] + point });
+
+    if (currentIdx < questions.length - 1) {
+      setCurrentIdx(currentIdx + 1);
+    } else {
+      setMode('result');
+    }
+  };
+
+  const totalScore = Object.values(scores).reduce((a, b) => a + b, 0);
+  const survivalRate = Math.min(100, Math.round((totalScore / (questions.length * 5)) * 100));
 
   return (
-    <main className="min-h-screen bg-white text-[#000000] font-sans tracking-tight">
+    <main className="min-h-screen bg-white text-black font-sans tracking-tight">
+      {/* GNB */}
       <nav className="sticky top-0 z-50 bg-white/95 border-b border-gray-100 backdrop-blur-sm">
         <div className="max-w-7xl mx-auto px-8 h-20 flex items-center justify-between">
-          <div className="flex items-center gap-10">
-            {/* 1. 로고 텍스트 수정: 대문자 SICAS 강조 */}
-            <h1 className="text-2xl font-black tracking-tighter cursor-pointer uppercase" onClick={() => setMode('home')}>
-              SICAS
-            </h1>
-            <div className="hidden lg:flex gap-10 text-[15px] font-bold text-[#666666]">
-              <a href="#" className="hover:text-black transition-colors">트렌드 리포트</a>
-              <a href="#" className="hover:text-black transition-colors">커리어 로드맵</a>
-              <a href="#" className="hover:text-black transition-colors">아키텍트 가이드</a>
-            </div>
-          </div>
-          <div className="flex items-center gap-6">
-            <button onClick={() => setMode('test')} className="text-[14px] font-bold border-b-2 border-black pb-1 hover:text-gray-500 hover:border-gray-500 transition-all">
-              테스트 시작
-            </button>
-          </div>
+          <h1 className="text-2xl font-black tracking-tighter cursor-pointer" onClick={() => window.location.reload()}>AI SURVIVAL</h1>
+          <button onClick={() => setMode('test')} className="text-sm font-bold border-b-2 border-black pb-1">진단하기</button>
         </div>
       </nav>
 
-      {/* 홈 모드 렌더링 */}
+      {/* 메인 홈 모드 */}
       {mode === 'home' && (
-        <div className="animate-in fade-in duration-1000">
-         <section className="relative h-[85vh] flex items-center overflow-hidden bg-slate-900">
-            <div className="absolute inset-0 opacity-60">
-                <div className="w-full h-full bg-gradient-to-r from-black to-transparent"></div>
-            </div>
-            <div className="relative max-w-7xl mx-auto px-8 w-full">
-              <div className="max-w-2xl">
-                <span className="text-blue-400 font-bold tracking-[0.2em] mb-4 block uppercase">Preview the Future</span>
-                <h2 className="text-5xl md:text-7xl font-bold text-white mb-8 leading-[1.1] tracking-tighter">
-                  사회와 커리어를<br/>연결하는 분석 지표
-                </h2>
-               <p className="text-xl text-gray-300 mb-12 leading-relaxed">
-                  Social Integration Career Analysis Service<br/>
-                  변화하는 시대 속에서 당신의 커리어 위치와 사회적 가치를 진단합니다.
-                </p>
-                <div className="flex gap-4">
-                  <button onClick={() => setMode('test')} className="px-12 py-4 bg-white text-black font-bold text-sm hover:bg-gray-200 transition-all">
-                    분석 시작하기
-                  </button>
-                  <button className="px-12 py-4 bg-transparent text-white border border-white/30 font-bold text-sm hover:bg-white/10 transition-all">
-                    서비스 소개
-                  </button>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          <section className="max-w-7xl mx-auto px-8 py-24">
-            <div className="flex justify-between items-end mb-16">
-              <h3 className="text-4xl font-bold tracking-tighter">Essential Insight</h3>
-              <p className="text-gray-500 font-medium">SICAS가 분석하는 커리어 통합 생태계</p>
-            </div>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              <div className="p-10 border border-gray-100 rounded-2xl hover:shadow-xl transition-all">
-                <div className="text-blue-600 font-bold mb-4">01</div>
-                <h4 className="text-xl font-bold mb-2">커리어 아키텍처</h4>
-                <p className="text-gray-500">개인의 역량이 사회 시스템 내에서 어떻게 최적화될 수 있는지 설계합니다.</p>
-              </div>
-              {/* 추가 그리드 아이템들을 이곳에 배치하세요 */}
-            </div>
-          </section>
-        </div>
+        <section className="relative h-[80vh] flex items-center bg-slate-900 text-white px-8">
+          <div className="max-w-7xl mx-auto w-full">
+            <span className="text-blue-400 font-bold tracking-[0.3em] mb-4 block underline underline-offset-8">2026 SPECIAL REPORT</span>
+            <h2 className="text-6xl font-bold mb-8 leading-tight tracking-tighter">당신은 AI에 대체될 것인가,<br/>AI를 지배할 것인가.</h2>
+            <button onClick={() => setMode('test')} className="px-12 py-5 bg-white text-black font-bold hover:bg-gray-200 transition-all">지금 바로 진단 시작</button>
+          </div>
+        </section>
       )}
 
-      {/* 테스트 모드 렌더링 */}
+      {/* 테스트 모드 */}
       {mode === 'test' && (
-        <div className="max-w-4xl mx-auto px-8 py-24 text-center">
-          <h2 className="text-3xl font-bold mb-4">SICAS 정밀 진단이 준비 중입니다.</h2>
-          <button onClick={() => setMode('home')} className="text-blue-600 underline">홈으로 돌아가기</button>
-        </div>
+        <section className="max-w-4xl mx-auto px-8 py-32 animate-in fade-in slide-in-from-bottom duration-700">
+          <div className="mb-16">
+            <p className="text-sm font-bold text-gray-400 tracking-[0.2em] mb-4">QUESTION {String(currentIdx + 1).padStart(2, '0')} / {questions.length}</p>
+            <div className="w-full bg-gray-100 h-1 mb-12">
+              <div className="bg-black h-full transition-all duration-500" style={{ width: `${((currentIdx + 1) / questions.length) * 100}%` }}></div>
+            </div>
+            <h2 className="text-4xl font-bold tracking-tighter leading-tight min-h-[8rem]">{questions[currentIdx].q}</h2>
+          </div>
+          <div className="grid gap-3">
+            {[
+              { label: "매우 그렇다", p: 5 }, { label: "그렇다", p: 4 }, { label: "보통이다", p: 3 }, { label: "아니다", p: 2 }, { label: "전혀 아니다", p: 1 }
+            ].map((opt) => (
+              <button key={opt.p} onClick={() => handleNext(opt.p)} className="w-full text-left py-6 px-10 border border-gray-200 text-lg font-bold hover:bg-black hover:text-white transition-all">
+                {opt.label}
+              </button>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* 결과 모드 */}
+      {mode === 'result' && (
+        <section className="max-w-4xl mx-auto px-8 py-32 text-center animate-in zoom-in duration-700">
+          <span className="text-gray-400 font-bold tracking-widest uppercase text-sm">Diagnosis Complete</span>
+          <h2 className="text-7xl font-black my-10 tracking-tighter">{survivalRate}%</h2>
+          <p className="text-2xl font-bold mb-12">당신의 AI 시대 생존 확률입니다.</p>
+          <div className="bg-gray-50 p-10 text-left border-l-4 border-black mb-12">
+            <h4 className="font-bold text-xl mb-4">아키텍트의 분석 결과:</h4>
+            <p className="text-gray-600 leading-relaxed italic text-lg">
+              {survivalRate > 80 ? "경이로운 수준입니다. 당신은 이미 AI를 도구로 부리며 전체를 설계하는 '슈퍼 아키텍트'의 길을 걷고 있습니다." : 
+               survivalRate > 50 ? "안정적인 생존권입니다. 다만 특정 기술에 안주하기보다 비즈니스 설계 능력을 더 키울 필요가 있습니다." : 
+               "경고 단계입니다. 단순 구현 위주의 업무 스타일은 AI에 의해 가장 먼저 대체될 위험이 있습니다. 설계 중심으로 사고를 전환하세요."}
+            </p>
+          </div>
+          <button onClick={() => window.location.reload()} className="px-12 py-4 bg-black text-white font-bold text-sm">테스트 다시하기</button>
+        </section>
       )}
     </main>
   );
