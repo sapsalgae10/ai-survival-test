@@ -9,9 +9,9 @@ export default function Home() {
       <nav className="sticky top-0 z-50 bg-white/95 border-b border-gray-100 backdrop-blur-sm">
         <div className="max-w-7xl mx-auto px-8 h-20 flex items-center justify-between">
           <div className="flex items-center gap-10">
-            {/* 1. 로고 텍스트 수정: sical -> sicas (소문자 강조) */}
-            <h1 className="text-2xl font-black tracking-tighter cursor-pointer lowercase" onClick={() => setMode('home')}>
-              sicas
+            {/* 1. 로고 텍스트 수정: 대문자 SICAS 강조 */}
+            <h1 className="text-2xl font-black tracking-tighter cursor-pointer uppercase" onClick={() => setMode('home')}>
+              SICAS
             </h1>
             <div className="hidden lg:flex gap-10 text-[15px] font-bold text-[#666666]">
               <a href="#" className="hover:text-black transition-colors">트렌드 리포트</a>
