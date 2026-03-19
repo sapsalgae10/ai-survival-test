@@ -9,9 +9,9 @@ export default function Home() {
       <nav className="sticky top-0 z-50 bg-white/95 border-b border-gray-100 backdrop-blur-sm">
         <div className="max-w-7xl mx-auto px-8 h-20 flex items-center justify-between">
           <div className="flex items-center gap-10">
-            {/* 1. 로고 텍스트 수정: AI SURVIVAL -> sical (소문자 강조) */}
+            {/* 1. 로고 텍스트 수정: sical -> sicas (소문자 강조) */}
             <h1 className="text-2xl font-black tracking-tighter cursor-pointer lowercase" onClick={() => setMode('home')}>
-              sical
+              sicas
             </h1>
             <div className="hidden lg:flex gap-10 text-[15px] font-bold text-[#666666]">
               <a href="#" className="hover:text-black transition-colors">트렌드 리포트</a>
@@ -37,7 +37,6 @@ export default function Home() {
             <div className="relative max-w-7xl mx-auto px-8 w-full">
               <div className="max-w-2xl">
                 <span className="text-blue-400 font-bold tracking-[0.2em] mb-4 block uppercase">Preview the Future</span>
-                {/* 2. 메인 타이틀 수정: 사회 통합과 커리어 분석의 의미를 담았습니다 */}
                 <h2 className="text-5xl md:text-7xl font-bold text-white mb-8 leading-[1.1] tracking-tighter">
                   사회와 커리어를<br/>연결하는 분석 지표
                 </h2>
@@ -62,7 +61,7 @@ export default function Home() {
               <h3 className="text-4xl font-bold tracking-tighter">Essential Insight</h3>
               <p className="text-gray-500 font-medium">SICAS가 분석하는 커리어 통합 생태계</p>
             </div>
-             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               <div className="p-10 border border-gray-100 rounded-2xl hover:shadow-xl transition-all">
                 <div className="text-blue-600 font-bold mb-4">01</div>
                 <h4 className="text-xl font-bold mb-2">커리어 아키텍처</h4>
