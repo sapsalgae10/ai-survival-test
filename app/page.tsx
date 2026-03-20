@@ -46,7 +46,7 @@ export default function Home() {
       {/* GNB */}
       <nav className="sticky top-0 z-50 bg-white/95 border-b border-gray-100 backdrop-blur-sm">
         <div className="max-w-7xl mx-auto px-8 h-20 flex items-center justify-between">
-          <h1 className="text-2xl font-black tracking-tighter cursor-pointer" onClick={() => window.location.reload()}>AI SURVIVAL</h1>
+          <h1 className="text-2xl font-black tracking-tighter cursor-pointer" onClick={() => window.location.reload()}>SICAS</h1>
           <button onClick={() => setMode('test')} className="text-sm font-bold border-b-2 border-black pb-1">진단하기</button>
         </div>
       </nav>
