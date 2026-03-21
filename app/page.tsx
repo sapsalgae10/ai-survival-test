@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 
 // 이미지 에셋 임포트 (경로가 올바른지 확인하세요)
-import logo from '/public/logo.png'; 
+import logo from '/public/images/logo.png'; 
 import survivalIllustration from '/public/logo.png'; // 실제 일러스트 이미지로 교체 필요
 
 export default function Home() {
@@ -61,9 +61,7 @@ export default function Home() {
       {/* GNB */}
       <nav className="sticky top-0 z-50 bg-white/95 border-b border-gray-100 backdrop-blur-sm">
         <div className="max-w-7xl mx-auto px-8 h-20 flex items-center justify-between">
-          <h1 className="text-2xl font-black tracking-tighter cursor-pointer" onClick={resetTest}>
-            SICAS
-          </h1>
+          <img src="public/logo.png" alt="" />
           <button onClick={() => setMode('test')} className="text-sm font-bold border-b-2 border-black pb-1">
             진단하기
           </button>
