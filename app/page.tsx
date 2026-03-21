@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 
 // 이미지 에셋 임포트 (경로가 올바른지 확인하세요)
-import logo from '/public/images/logo.png'; 
+import logo from '/public/logo.png'; 
 import survivalIllustration from '/public/logo.png'; // 실제 일러스트 이미지로 교체 필요
 
 export default function Home() {
