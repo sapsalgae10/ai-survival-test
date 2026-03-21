@@ -3,8 +3,8 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 
 // 이미지 에셋 임포트 (경로가 올바른지 확인하세요)
-import logo from '/public/logo.png'; 
-import survivalIllustration from '/public/logo.png'; // 실제 일러스트 이미지로 교체 필요
+import logo from '/logo.png'; // 실제 로고 이미지로 교체 필요
+import survivalIllustration from '/logo.png'; // 실제 일러스트 이미지로 교체 필요
 
 export default function Home() {
   const [mode, setMode] = useState('home'); // home, test, result
@@ -61,7 +61,7 @@ export default function Home() {
       {/* GNB */}
       <nav className="sticky top-0 z-50 bg-white/95 border-b border-gray-100 backdrop-blur-sm">
         <div className="max-w-7xl mx-auto px-8 h-20 flex items-center justify-between">
-          <img src="public/logo.png" alt="" />
+          <img src="/logo.png" alt="" />
           <button onClick={() => setMode('test')} className="text-sm font-bold border-b-2 border-black pb-1">
             진단하기
           </button>
