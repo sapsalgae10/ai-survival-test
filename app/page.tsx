@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from 'react';
 import Image from 'next/image';
+import { logDisallowedDynamicError } from 'next/dist/server/app-render/dynamic-rendering';
 
 // 이미지 에셋 임포트 (경로가 올바른지 확인하세요)
 //import logo from '/public/logo.png'; // 실제 로고 이미지로 교체 필요
@@ -105,11 +106,12 @@ export default function Home() {
             
             {/* 오른쪽: 메인 일러스트레이션 */}
             <div className="w-full h-auto aspect-square relative rounded-2xl overflow-hidden shadow-2xl animate-in fade-in zoom-in duration-1000">
-              <Image 
-                src={'/public/logo.png'} 
-                alt="AI 시대 서바이벌 가이드 디지털 일러스트레이션"
-                fill 
-                style={{ objectFit: 'cover' }} 
+              <Image
+                  src={'/logo.png'} // 실제 일러스트 이미지로 교체 필요
+                  alt="시발"
+      // width={500} // 자동 계산되므로 필요 없음
+      // height={500} // 자동 계산되므로 필요 없음
+                  placeholder="blur" // 로딩 중 블러 처리 (옵션)
               />
             </div>
           </div>
