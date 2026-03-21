@@ -1,7 +1,9 @@
 import type { NextConfig } from "next";
 
-const nextConfig: NextConfig = {
-  /* config options here */
+const nextConfig = {
+  images: {
+    unoptimized: true,
+  },
 };
 
 export default nextConfig;
@@ -17,3 +19,7 @@ module.exports = {
     ],
   },
 };
+
+
+
+
