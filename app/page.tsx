@@ -61,7 +61,7 @@ export default function Home() {
       {/* GNB */}
       <nav className="sticky top-0 z-50 bg-white/95 border-b border-gray-100 backdrop-blur-sm">
         <div className="max-w-7xl mx-auto px-8 h-20 flex items-center justify-between">
-          <img src="/public/logo.png" alt="" />
+          <img src="/logo.png" alt="시발" />
           <button onClick={() => setMode('test')} className="text-sm font-bold border-b-2 border-black pb-1">
             진단하기
           </button>
@@ -77,7 +77,7 @@ export default function Home() {
             <div className="space-y-8 animate-in fade-in slide-in-from-left duration-700">
               <div className="w-16 h-16 relative mb-4">
                 <Image 
-                  src={'/public/logo.png'} 
+                  src={'/logo.png'} 
                   alt="SICAS 로고"
                   fill 
                   style={{ objectFit: 'contain' }} 
