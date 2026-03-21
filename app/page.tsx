@@ -78,7 +78,7 @@ export default function Home() {
             <div className="space-y-8 animate-in fade-in slide-in-from-left duration-700">
               <div className="w-16 h-16 relative mb-4">
                 <Image 
-                  src={'/public/logo.png'} 
+                  src="/logo.png"
                   alt="SICAS 로고"
                   fill 
                   style={{ objectFit: 'contain' }} 
@@ -107,7 +107,7 @@ export default function Home() {
             {/* 오른쪽: 메인 일러스트레이션 */}
             <div className="w-full h-auto aspect-square relative rounded-2xl overflow-hidden shadow-2xl animate-in fade-in zoom-in duration-1000">
               <Image
-                  src={'/public/logo.png'} // 실제 일러스트 이미지로 교체 필요
+                  src="/logo.png" // 실제 일러스트 이미지로 교체 필요
                   alt="시발"
       // width={500} // 자동 계산되므로 필요 없음
       // height={500} // 자동 계산되므로 필요 없음
